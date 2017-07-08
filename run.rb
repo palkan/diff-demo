@@ -5,6 +5,10 @@ module Run
 
   # hey look a comment that changed!
 
+  def new_and_covered
+    :ok
+  end
+
   def another_method
     "yo"
   end
@@ -27,4 +31,8 @@ module Run
     0
   end
   # :nocov:
+
+  def new_and_uncovered
+    :fail
+  end
 end
