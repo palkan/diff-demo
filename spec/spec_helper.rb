@@ -6,6 +6,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   Coveralls::SimpleCov::Formatter
 ])
 
-SimpleCov.start
+SimpleCov.start do
+   add_filter "/spec/"
+end
 
 require File.join File.dirname(__FILE__), '../run.rb'
