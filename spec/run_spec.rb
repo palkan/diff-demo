@@ -10,7 +10,9 @@ describe Run do
     expect(1).to eq 1
   end
 
-  it "runs 2" do
-    # expect(Run.new_and_covered).to eq :ok
+  it "runs new and covered" do
+    expect(Run.new_and_covered).to eq :ok
+
+    expect(RunTwo.covered).to eq 1
   end
 end

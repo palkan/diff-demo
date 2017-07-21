@@ -11,3 +11,4 @@ SimpleCov.start do
 end
 
 require File.join File.dirname(__FILE__), '../run.rb'
+require File.join File.dirname(__FILE__), '../run_two.rb'
