@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Run do
   it "runs" do
     # expect(Run.this_is_covered).to eq 1
-    expect(Run.another_method).to eq "yo"
+    # expect(Run.another_method).to eq "yo"
   end
 
   it "this is a non-coverage-relevant patch" do
@@ -14,5 +14,9 @@ describe Run do
     expect(Run.new_and_covered).to eq :ok
 
     expect(RunTwo.covered).to eq 1
+  end
+
+  it "covers new method" do
+    expect(RunTwo.new_and_covered).to eq 1
   end
 end
