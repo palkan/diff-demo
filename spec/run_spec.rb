@@ -12,5 +12,7 @@ describe Run do
 
   it "runs new and covered" do
     expect(Run.new_and_covered).to eq :ok
+
+    expect(RunTwo.covered).to eq 1
   end
 end
