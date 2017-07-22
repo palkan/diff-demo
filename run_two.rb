@@ -10,6 +10,7 @@ module RunTwo
   end
 
   def new_and_uncovered
+    foo = :bar
     0
   end
 
