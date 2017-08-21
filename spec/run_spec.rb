@@ -16,4 +16,8 @@ describe Run do
 
     expect(RunTwo.covered).to eq 1
   end
+
+  it "covers new method" do
+    expect(RunTwo.new_and_covered).to eq 1
+  end
 end

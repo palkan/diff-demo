@@ -6,6 +6,9 @@ module Run
   # hey look a comment that changed!
 
   def new_and_covered
+    # extra lines:
+    1
+    2
     :ok
   end
 
@@ -14,7 +17,6 @@ module Run
   end
 
   def this_is_not_covered
-    0
     "adding more uncovered lines"
   end
 
