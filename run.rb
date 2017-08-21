@@ -35,4 +35,8 @@ module Run
   def new_and_uncovered
     :fail
   end
+
+  def added_on_master
+    2
+  end
 end
