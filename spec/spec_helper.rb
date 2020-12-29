@@ -10,5 +10,5 @@ SimpleCov.start do
    add_filter "/spec/"
 end
 
-require File.join File.dirname(__FILE__), '../run.rb'
-require File.join File.dirname(__FILE__), '../run+two.rb'
+require File.join File.dirname(__FILE__), '../lib++/run.rb'
+require File.join File.dirname(__FILE__), '../lib++/run+two.rb'
