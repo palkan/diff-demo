@@ -1,13 +1,15 @@
-require 'simplecov'
-require 'coveralls'
+require "simplecov"
+require "simplecov-lcov"
+SimpleCov::Formatter::LcovFormatter.config do |c|
+  c.report_with_single_file = true
+  c.single_report_path = "coverage/lcov.info"
+end
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-])
+SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 
 SimpleCov.start do
-   add_filter "/spec/"
+  enable_coverage :branch
+  add_filter "/spec/"
 end
 
 require File.join File.dirname(__FILE__), '../lib++/run.rb'
