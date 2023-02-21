@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ["spec/run_spec.rb", "spec/run2_spec.rb"]
+        target: ["run_spec", "run2_spec"]
     steps:
     - uses: actions/checkout@v2
     - name: Install Coveralls reporter
@@ -32,10 +32,11 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: |
-        bundle exec rspec ${{ matrix.target }}
+        bundle exec rspec spec/${{ matrix.target }}.rb
     - name: Coveralls upload
       run: |
-        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls -p --debug
+        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" \
+        ./coveralls -p --job-flag=${{ matrix.target }} --debug
   finalize:
     needs: test
     runs-on: ubuntu-latest
