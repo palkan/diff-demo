@@ -35,7 +35,7 @@ jobs:
         bundle exec rspec ${{ matrix.target }}
     - name: Coveralls upload
       run: |
-        COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls --debug
+        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls -p --debug
   finalize:
     needs: test
     runs-on: ubuntu-latest
@@ -51,4 +51,4 @@ jobs:
         curl -L https://github.com/coverallsapp/coverage-reporter/releases/download/v0.2.0/coveralls-linux.tar.gz | tar zxv
     - name: Finilize Coveralls build
       run: |
-        ./coveralls -d
+        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls -d --debug
