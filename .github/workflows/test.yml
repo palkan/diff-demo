@@ -35,7 +35,7 @@ jobs:
         bundle exec rspec ${{ matrix.target }}
     - name: Coveralls upload
       run: |
-        ./coveralls --debug
+        COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls --debug
   finalize:
     needs: test
     runs-on: ubuntu-latest
