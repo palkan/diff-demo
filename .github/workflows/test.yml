@@ -14,7 +14,6 @@ jobs:
       BUNDLE_JOBS: 4
       BUNDLE_RETRY: 3
       CI: true
-      COVERALLS_ENDPOINT: ${{ secrets.COVERALLS_ENDPOINT }}
       COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
     strategy:
       fail-fast: false
@@ -25,7 +24,7 @@ jobs:
     - name: Install Coveralls reporter
       run: |
         printenv | sort
-        curl -L https://github.com/coverallsapp/coverage-reporter/releases/download/v0.2.0/coveralls-linux.tar.gz | tar zxv
+        curl -L https://github.com/coverallsapp/coverage-reporter/releases/latest/download/coveralls-linux.tar.gz | tar zxv
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.2.1
@@ -35,7 +34,6 @@ jobs:
         bundle exec rspec spec/${{ matrix.target }}.rb
     - name: Coveralls upload
       run: |
-        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" COVERALLS_SERVICE_JOB_NUMBER="${GITHUB_RUN_ID:4}" \
         ./coveralls -p --job-flag=${{ matrix.target }} --debug
   finalize:
     needs: test
@@ -44,12 +42,11 @@ jobs:
       BUNDLE_JOBS: 4
       BUNDLE_RETRY: 3
       CI: true
-      COVERALLS_ENDPOINT: ${{ secrets.COVERALLS_ENDPOINT }}
-      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      COVERALLS_REPO_TOKEN: ${{ secrets.github_token }}
     steps:
     - name: Install Coveralls reporter
       run: |
-        curl -L https://github.com/coverallsapp/coverage-reporter/releases/download/v0.2.0/coveralls-linux.tar.gz | tar zxv
+        curl -L https://github.com/coverallsapp/coverage-reporter/releases/latest/download/coveralls-linux.tar.gz | tar zxv
     - name: Finilize Coveralls build
       run: |
-        COVERALLS_SERVICE_NUMBER="${GITHUB_RUN_ID:4}" ./coveralls -d --debug
+        ./coveralls -d --debug
